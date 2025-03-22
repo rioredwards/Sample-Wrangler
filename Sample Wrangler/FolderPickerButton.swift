@@ -10,7 +10,7 @@ import SwiftUI
 import AppKit
 
 struct FolderPickerButton: View {
-    @Binding var folderURL: URL?
+    @Binding var baseFolder: URL?
     
     var body: some View {
         VStack {
@@ -24,15 +24,11 @@ struct FolderPickerButton: View {
                     if response == .OK {
                         // Update binding on the main thread
                         DispatchQueue.main.async {
-                            folderURL = panel.url
+                            baseFolder = panel.url
                         }
                         print("Selected folder: \(panel.url?.path ?? "")")
                     }
                 }
-            }
-            if let folderURL = folderURL {
-                Text("Selected folder: \(folderURL.path)")
-                    .padding(.top)
             }
         }
         .padding()
