@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedFolder: URL? = nil // Lifted state
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+                FolderPickerButton(folderURL: $selectedFolder)
+                if let folder = selectedFolder {
+                    Text("Parent sees folder: \(folder.path)")
+                }
+            FileReader()
         }
         .padding()
     }
