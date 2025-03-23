@@ -17,7 +17,7 @@ struct FileReader: View {
     }
     
     // Computed property that recalculates file paths on every render.
-    var filePaths: [String] {
+    var filePaths: [URL] {
         returnFilePathsDeepSearch(at: baseFolder.path)
     }
     
@@ -25,9 +25,32 @@ struct FileReader: View {
         VStack {
             if !filePaths.isEmpty {
                 List(filePaths, id: \.self) { file in
-                    Text(file)
+                    Text(file.lastPathComponent)
                 }
             }
+        }.onAppear() {
+            if !filePaths.isEmpty {
+                for filePath in filePaths {
+                    do {
+                        let newName = "frog-\(UUID().uuidString).\(filePath.pathExtension)"
+                        try renameFile(at: filePath, to: newName)
+                    } catch {
+                        print("Rename failed for \(filePath.lastPathComponent): \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+    
+    func renameFile(at originalURL: URL, to newName: String) throws {
+        let newURL = originalURL.deletingLastPathComponent()
+            .appendingPathComponent(newName)
+        
+        do {
+            try fileManager.moveItem(at: originalURL, to: newURL)
+            print("Successfully Renamed \(originalURL.lastPathComponent) to \(newName)!")
+        } catch {
+            print("Failed to rename: \(error.localizedDescription)")
         }
     }
     
@@ -38,16 +61,15 @@ struct FileReader: View {
         return false
     }
     
-    func returnFilePathsDeepSearch(at baseFolderPath: String) -> [String] {
+    func returnFilePathsDeepSearch(at baseFolderPath: String) -> [URL] {
         let dirEnum = fileManager.enumerator(atPath: baseFolderPath)
-        var audioFilePaths: [String] = []
-        
+        var audioFilePaths: [URL] = []
+
         while let file = dirEnum?.nextObject() as? String {
-            // Filter out non-audio files
             let fullPath = baseFolderPath.appending("/\(file)")
             let fileURL = URL(fileURLWithPath: fullPath)
             if fileIsAudio(at: fileURL) {
-                audioFilePaths.append(fullPath)
+                audioFilePaths.append(fileURL)
             }
         }
         return audioFilePaths
