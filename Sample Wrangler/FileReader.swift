@@ -8,63 +8,61 @@
 import Foundation
 import SwiftUI
 
-struct FileReader: View {
-    let fileManager = FileManager.default
-    let baseFolder: URL
+// ViewModel to handle file operations
+class AudioFileViewModel: ObservableObject {
+    private let fileManager = FileManager.default
     
-    init(_ baseFolder: URL) {
-        self.baseFolder = baseFolder
+    @Published var audioFiles: [URL] = []
+    @Published var isProcessing: Bool = false
+    @Published var errorMessage: String? = nil
+    
+    func loadAudioFiles(from baseFolder: URL) {
+        audioFiles = returnFilePathsDeepSearch(at: baseFolder.path)
     }
     
-    // Computed property that recalculates file paths on every render.
-    var filePaths: [URL] {
-        returnFilePathsDeepSearch(at: baseFolder.path)
-    }
-    
-    var body: some View {
-        VStack {
-            if !filePaths.isEmpty {
-                List(filePaths, id: \.self) { file in
-                    Text(file.lastPathComponent)
-                }
-            }
-        }.onAppear() {
-            if !filePaths.isEmpty {
-                for filePath in filePaths {
-                    do {
-                        let newName = "frog-\(UUID().uuidString).\(filePath.pathExtension)"
-                        try renameFile(at: filePath, to: newName)
-                    } catch {
-                        print("Rename failed for \(filePath.lastPathComponent): \(error.localizedDescription)")
-                    }
-                }
+    func renameAllFiles() {
+        isProcessing = true
+        errorMessage = nil
+        
+        for filePath in audioFiles {
+            do {
+                let newName = "frog-\(UUID().uuidString).\(filePath.pathExtension)"
+                try renameFile(at: filePath, to: newName)
+            } catch {
+                errorMessage = "Error renaming files: \(error.localizedDescription)"
+                print("Rename failed for \(filePath.lastPathComponent): \(error.localizedDescription)")
             }
         }
+        
+        // Refresh file list after renaming
+        if let baseFolder = audioFiles.first?.deletingLastPathComponent() {
+            loadAudioFiles(from: baseFolder)
+        }
+        
+        isProcessing = false
     }
     
-    func renameFile(at originalURL: URL, to newName: String) throws {
+    private func renameFile(at originalURL: URL, to newName: String) throws {
         let newURL = originalURL.deletingLastPathComponent()
             .appendingPathComponent(newName)
         
-        do {
-            try fileManager.moveItem(at: originalURL, to: newURL)
-            print("Successfully Renamed \(originalURL.lastPathComponent) to \(newName)!")
-        } catch {
-            print("Failed to rename: \(error.localizedDescription)")
-        }
+        try fileManager.moveItem(at: originalURL, to: newURL)
+        print("Successfully Renamed \(originalURL.lastPathComponent) to \(newName)!")
     }
     
-    func fileIsAudio(at fileURL: URL) -> Bool {
+    private func fileIsAudio(at fileURL: URL) -> Bool {
+        print("Testing if file is audio: \(fileURL)")
         if let typeIdentifier = try? fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType, typeIdentifier.conforms(to: .audio) {
             return true
         }
         return false
     }
     
-    func returnFilePathsDeepSearch(at baseFolderPath: String) -> [URL] {
+    private func returnFilePathsDeepSearch(at baseFolderPath: String) -> [URL] {
         let dirEnum = fileManager.enumerator(atPath: baseFolderPath)
         var audioFilePaths: [URL] = []
-
+        
+        
         while let file = dirEnum?.nextObject() as? String {
             let fullPath = baseFolderPath.appending("/\(file)")
             let fileURL = URL(fileURLWithPath: fullPath)
@@ -73,5 +71,41 @@ struct FileReader: View {
             }
         }
         return audioFilePaths
+    }
+}
+
+// View that uses the ViewModel
+struct FileReader: View {
+    @StateObject private var viewModel = AudioFileViewModel()
+    let baseFolder: URL
+    
+    init(_ baseFolder: URL) {
+        self.baseFolder = baseFolder
+    }
+    
+    var body: some View {
+        VStack {
+            if viewModel.isProcessing {
+                ProgressView("Processing files...")
+            } else if let error = viewModel.errorMessage {
+                Text(error)
+                    .foregroundColor(.red)
+            } else if viewModel.audioFiles.isEmpty {
+                Text("No audio files found")
+            } else {
+                List(viewModel.audioFiles, id: \.self) { file in
+                    Text(file.lastPathComponent)
+                }
+                
+                Button("Rename All Files") {
+                    viewModel.renameAllFiles()
+                }
+                .padding()
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .onAppear {
+            viewModel.loadAudioFiles(from: baseFolder)
+        }
     }
 }

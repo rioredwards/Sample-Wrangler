@@ -7,17 +7,36 @@
 
 import SwiftUI
 
+// Main ViewModel to handle application state
+class AppViewModel: ObservableObject {
+    @Published var baseFolder: URL? = nil
+    
+    func selectFolder(url: URL) {
+        baseFolder = url
+    }
+}
+
 struct ContentView: View {
-    @State private var baseFolder: URL? = nil
+    @StateObject private var viewModel = AppViewModel()
     
     var body: some View {
         VStack {
-                FolderPickerButton(baseFolder: $baseFolder)
-                if let baseFolder = baseFolder {
-                    Text("Selected folder: \(baseFolder.path)")
-                        .padding(.top)
-                    FileReader(baseFolder)
-                }
+            FolderPickerButton(baseFolder: $viewModel.baseFolder)
+            
+            if let baseFolder = viewModel.baseFolder {
+                Text("Selected folder: \(baseFolder.lastPathComponent)")
+                    .padding(.top)
+                    .font(.headline)
+                
+                FileReader(baseFolder)
+                    .padding()
+            } else {
+                Spacer()
+                Text("Please select a folder to begin")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+                Spacer()
+            }
         }
         .padding()
     }
