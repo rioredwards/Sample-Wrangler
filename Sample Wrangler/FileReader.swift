@@ -8,12 +8,23 @@
 import Foundation
 import SwiftUI
 
+struct FileObj {
+    let url: URL
+    let originalName: String
+    let newName: String
+}
+
 // ViewModel to handle file operations
 class AudioFileViewModel: ObservableObject {
     private let fileManager = FileManager.default
     var baseFolder: URL
     
-    @Published var audioFiles: [URL] = []
+    @Published var audioFiles: [URL] = [] {
+        didSet {
+            generateFileObjArr()
+        }
+    }
+    @Published var fileObjArr: [FileObj] = []
     @Published var isProcessing: Bool = false
     @Published var errorMessage: String? = nil
     
@@ -26,17 +37,38 @@ class AudioFileViewModel: ObservableObject {
         audioFiles = returnFilePathsDeepSearch(at: baseFolder.path)
     }
     
+    func generateFileObjArr() {
+        if !audioFiles.isEmpty {
+            fileObjArr = audioFiles.map { file in
+                let originalName = file.lastPathComponent
+                let newName = getNewFileName(from: originalName)
+                return FileObj(url: file, originalName: originalName, newName: newName)
+            }
+        } else {
+            fileObjArr = []
+        }
+    }
+    
+    func getNewFileName(from original: String) -> String {
+        if original.contains("frog") {
+            return original.replacingOccurrences(of: "frog", with: "cow")
+        } else if original.contains("cow") {
+            return original.replacingOccurrences(of: "cow", with: "frog")
+        } else {
+            return original
+        }
+    }
+    
     func renameAllFiles() {
         isProcessing = true
         errorMessage = nil
         
-        for filePath in audioFiles {
+        for fileObj in fileObjArr {
             do {
-                let newName = "frog-\(UUID().uuidString).\(filePath.pathExtension)"
-                try renameFile(at: filePath, to: newName)
+                try renameFile(at: fileObj.url, to: fileObj.newName)
             } catch {
                 errorMessage = "Error renaming files: \(error.localizedDescription)"
-                print("Rename failed for \(filePath.lastPathComponent): \(error.localizedDescription)")
+                print("Rename failed for \(fileObj.url.lastPathComponent): \(error.localizedDescription)")
             }
         }
         
@@ -93,12 +125,10 @@ struct FileReader: View {
             } else if let error = viewModel.errorMessage {
                 Text(error)
                     .foregroundColor(.red)
-            } else if viewModel.audioFiles.isEmpty {
+            } else if viewModel.fileObjArr.isEmpty {
                 Text("No audio files found")
             } else {
-                List(viewModel.audioFiles, id: \.self) { file in
-                    Text(file.lastPathComponent)
-                }
+                FileListView(viewModel.fileObjArr)
                 
                 Button("Rename All Files") {
                     viewModel.renameAllFiles()
