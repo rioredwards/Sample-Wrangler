@@ -10,6 +10,7 @@ import SwiftUI
 
 // ViewModel to handle file operations
 class FileViewModel: ObservableObject {
+    @Published var showingConfirmation = false
     private let fileManager = FileManager.default
     var baseFolder: URL
     

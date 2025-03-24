@@ -39,10 +39,19 @@ struct FileView: View {
                 FileListView(viewModel.fileObjArr)
                 
                 Button("Rename All Files") {
-                    viewModel.renameAllFiles()
+                    viewModel.showingConfirmation = true
                 }
                 .padding()
                 .buttonStyle(.borderedProminent)
+                .confirmationDialog("Change background", isPresented: $viewModel.showingConfirmation) {
+                    Button("Cancel", role: .cancel) { }
+                    Button("Confirm") {
+                        print("Confirm Button Pressed!")
+                        viewModel.renameAllFiles()
+                    }
+                } message: {
+                    Text("Are you sure?")
+                }
             }
         }
         .onChange(of: baseFolder) { _, newFolder in
