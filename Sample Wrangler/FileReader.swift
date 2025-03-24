@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct FileObj {
+struct FileObj: Identifiable {
+    let id = UUID()
     let url: URL
     let originalName: String
     let newName: String
