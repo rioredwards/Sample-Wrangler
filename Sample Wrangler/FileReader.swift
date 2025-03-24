@@ -11,12 +11,18 @@ import SwiftUI
 // ViewModel to handle file operations
 class AudioFileViewModel: ObservableObject {
     private let fileManager = FileManager.default
+    var baseFolder: URL
     
     @Published var audioFiles: [URL] = []
     @Published var isProcessing: Bool = false
     @Published var errorMessage: String? = nil
     
-    func loadAudioFiles(from baseFolder: URL) {
+    init(_ baseFolder: URL) {
+        self.baseFolder = baseFolder
+        loadAudioFiles()
+    }
+    
+    func loadAudioFiles() {
         audioFiles = returnFilePathsDeepSearch(at: baseFolder.path)
     }
     
@@ -35,10 +41,7 @@ class AudioFileViewModel: ObservableObject {
         }
         
         // Refresh file list after renaming
-        if let baseFolder = audioFiles.first?.deletingLastPathComponent() {
-            loadAudioFiles(from: baseFolder)
-        }
-        
+        loadAudioFiles()
         isProcessing = false
     }
     
@@ -51,7 +54,6 @@ class AudioFileViewModel: ObservableObject {
     }
     
     private func fileIsAudio(at fileURL: URL) -> Bool {
-        print("Testing if file is audio: \(fileURL)")
         if let typeIdentifier = try? fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType, typeIdentifier.conforms(to: .audio) {
             return true
         }
@@ -61,7 +63,6 @@ class AudioFileViewModel: ObservableObject {
     private func returnFilePathsDeepSearch(at baseFolderPath: String) -> [URL] {
         let dirEnum = fileManager.enumerator(atPath: baseFolderPath)
         var audioFilePaths: [URL] = []
-        
         
         while let file = dirEnum?.nextObject() as? String {
             let fullPath = baseFolderPath.appending("/\(file)")
@@ -76,10 +77,12 @@ class AudioFileViewModel: ObservableObject {
 
 // View that uses the ViewModel
 struct FileReader: View {
-    @StateObject private var viewModel = AudioFileViewModel()
+    @StateObject private var viewModel: AudioFileViewModel
     let baseFolder: URL
     
     init(_ baseFolder: URL) {
+        // This is the standard way to initialize a @StateObject with parameters
+        _viewModel = StateObject(wrappedValue: AudioFileViewModel(baseFolder))
         self.baseFolder = baseFolder
     }
     
@@ -104,8 +107,10 @@ struct FileReader: View {
                 .buttonStyle(.borderedProminent)
             }
         }
-        .onAppear {
-            viewModel.loadAudioFiles(from: baseFolder)
+        .onChange(of: baseFolder) { _, newFolder in
+            // When baseFolder changes, update the viewModel's baseFolder and reload
+            viewModel.baseFolder = newFolder
+            viewModel.loadAudioFiles()
         }
     }
 }
