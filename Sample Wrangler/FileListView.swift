@@ -41,8 +41,8 @@ struct FileListView_Previews: PreviewProvider {
     static var previews: some View {
         // Sample data for preview; adjust as needed for your FileObj model
         let sampleFiles = [
-            FileModel(url: URL("url")!, originalName: "Document1.pdf", newName: "Document1_Renamed.pdf"),
-            FileModel(url: URL("url")!, originalName: "Image1.png", newName: "Image1_Renamed.png")
+            FileModel(id: UUID().uuidString, url: URL("url")!, originalName: "Document1.pdf", newName: "Document1_Renamed.pdf"),
+            FileModel(id: UUID().uuidString, url: URL("url")!, originalName: "Image1.png", newName: "Image1_Renamed.png")
         ]
         return FileListView(sampleFiles)
             .previewLayout(.sizeThatFits)

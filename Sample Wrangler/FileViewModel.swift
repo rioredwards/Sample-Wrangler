@@ -37,7 +37,7 @@ class FileViewModel: ObservableObject {
             fileObjArr = audioFiles.map { file in
                 let originalName = file.lastPathComponent
                 let newName = getNewFileName(from: originalName)
-                return FileModel(url: file, originalName: originalName, newName: newName)
+                return FileModel(id: UUID().uuidString, url: file, originalName: originalName, newName: newName)
             }
         } else {
             fileObjArr = []
@@ -102,5 +102,41 @@ extension FileViewModel {
         
         try fileManager.moveItem(at: originalURL, to: newURL)
         print("Successfully Renamed \(originalURL.lastPathComponent) to \(newName)!")
+    }
+}
+
+// Encoding and Decoding
+extension FileViewModel {
+    private func encodeToData() -> Data? {
+        let encoder = JSONEncoder()
+        return try? encoder.encode(self.fileObjArr)
+    }
+    
+    func saveToDisk() {
+        do {
+            let data = self.encodeToData()!
+            let applicationSupportDirectoryURL = try getOrCreateApplicationSupportDirectory()
+            try data.write(to: applicationSupportDirectoryURL)
+        } catch {
+            print("Error saving data to disk: \(error)")
+        }
+    }
+    
+    private func getOrCreateApplicationSupportDirectory() throws -> URL {
+        if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            let appDirectory = appSupportURL.appendingPathComponent("SampleWrangler")
+            
+            // Create the directory if it doesn't exist
+            do {
+                try fileManager.createDirectory(at: appDirectory, withIntermediateDirectories: true)
+            } catch {
+                fatalError( "Couldn't create application support directory")
+            }
+            
+            let jsonURL = appDirectory.appendingPathComponent("transformations.json")
+            return jsonURL
+        } else {
+            fatalError( "Couldn't find application support directory")
+        }
     }
 }

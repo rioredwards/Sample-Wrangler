@@ -48,6 +48,7 @@ struct FileView: View {
                     Button("Confirm") {
                         print("Confirm Button Pressed!")
                         viewModel.renameAllFiles()
+                        viewModel.saveToDisk()
                     }
                 } message: {
                     Text("Are you sure?")

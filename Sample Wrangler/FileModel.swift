@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct FileModel: Identifiable {
-    let id = UUID()
+struct FileModel: Identifiable, Codable {
+    let id: String
     let url: URL
     let originalName: String
     let newName: String
