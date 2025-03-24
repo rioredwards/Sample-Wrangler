@@ -28,7 +28,7 @@ struct ContentView: View {
                     .padding(.top)
                     .font(.headline)
                 
-                FileReader(baseFolder)
+                FileView(baseFolder)
                     .padding()
             } else {
                 Spacer()

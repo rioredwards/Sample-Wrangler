@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct FileListView: View {
-    let fileObjArr: [FileObj]
-    @State private var selection: FileObj.ID?
+    let fileObjArr: [FileModel]
+    @State private var selection: FileModel.ID?
     
-    init(_ fileObjArr: [FileObj]) {
+    init(_ fileObjArr: [FileModel]) {
         self.fileObjArr = fileObjArr
     }
     
@@ -41,8 +41,8 @@ struct FileListView_Previews: PreviewProvider {
     static var previews: some View {
         // Sample data for preview; adjust as needed for your FileObj model
         let sampleFiles = [
-            FileObj(url: URL("url")!, originalName: "Document1.pdf", newName: "Document1_Renamed.pdf"),
-            FileObj(url: URL("url")!, originalName: "Image1.png", newName: "Image1_Renamed.png")
+            FileModel(url: URL("url")!, originalName: "Document1.pdf", newName: "Document1_Renamed.pdf"),
+            FileModel(url: URL("url")!, originalName: "Image1.png", newName: "Image1_Renamed.png")
         ]
         return FileListView(sampleFiles)
             .previewLayout(.sizeThatFits)

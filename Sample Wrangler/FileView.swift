@@ -1,0 +1,54 @@
+//
+//  FileView.swift
+//  Sample Wrangler
+//
+//  Created by Rio Edwards on 3/24/25.
+//
+
+//
+//  FileReader.swift
+//  Sample Wrangler
+//
+//  Created by Rio Edwards on 3/22/25.
+//
+
+import Foundation
+import SwiftUI
+
+// View that uses the ViewModel
+struct FileView: View {
+    @StateObject private var viewModel: FileViewModel
+    let baseFolder: URL
+    
+    init(_ baseFolder: URL) {
+        // This is the standard way to initialize a @StateObject with parameters
+        _viewModel = StateObject(wrappedValue: FileViewModel(baseFolder))
+        self.baseFolder = baseFolder
+    }
+    
+    var body: some View {
+        VStack {
+            if viewModel.isProcessing {
+                ProgressView("Processing files...")
+            } else if let error = viewModel.errorMessage {
+                Text(error)
+                    .foregroundColor(.red)
+            } else if viewModel.fileObjArr.isEmpty {
+                Text("No audio files found")
+            } else {
+                FileListView(viewModel.fileObjArr)
+                
+                Button("Rename All Files") {
+                    viewModel.renameAllFiles()
+                }
+                .padding()
+                .buttonStyle(.borderedProminent)
+            }
+        }
+        .onChange(of: baseFolder) { _, newFolder in
+            // When baseFolder changes, update the viewModel's baseFolder and reload
+            viewModel.baseFolder = newFolder
+            viewModel.loadAudioFiles()
+        }
+    }
+}
