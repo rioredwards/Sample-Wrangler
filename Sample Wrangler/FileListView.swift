@@ -7,29 +7,50 @@
 
 import SwiftUI
 
+extension FileTransformModel {
+    var sortOrder: Int {
+        var order = 0
+        if self.isMusicFile {
+            order += 1
+        }
+        if self.isBPMDetected {
+            order += 1
+        }
+        if self.isKeyDetected {
+            order += 1
+        }
+        if self.isRenamable {
+            order += 1
+        }
+        return order
+    }
+}
+
 struct FileListView: View {
-    let fileObjArr: [FileModel]
-    @State private var selection: FileModel.ID?
+    let fileTransformArr: [FileTransformModel]
+    @State private var selection: FileTransformModel.ID?
     
-    init(_ fileObjArr: [FileModel]) {
-        self.fileObjArr = fileObjArr
+    init(_ fileTransformArr: [FileTransformModel]) {
+        self.fileTransformArr = fileTransformArr
     }
     
+    @State private var sortOrder = [KeyPathComparator(\FileTransformModel.sortOrder)]
+    
     var body: some View {
-        if !fileObjArr.isEmpty {
-            Table(fileObjArr, selection: $selection) {
-                TableColumn("Current Name") { file in
-                    Text(file.originalName)
-                        .help(file.originalName)
+        if !fileTransformArr.isEmpty {
+            Table(fileTransformArr, selection: $selection,sortOrder: $sortOrder) {
+                TableColumn("Current Name") { (fileTransform: FileTransformModel) in
+                    Text(fileTransform.prevName)
+                        .help(fileTransform.prevName)
                 }
                 .width(min: 200)
                 TableColumn("") { file in
                     Image(systemName: "arrow.right")
                 }
                 .width(16)
-                TableColumn("New Name") { file in
-                    Text(file.newName)
-                        .help(file.newName)
+                TableColumn("New Name") { (fileTransform: FileTransformModel) in
+                    Text(fileTransform.newName ?? "")
+                        .help(fileTransform.newName ?? "")
                 }
                 .width(min: 200)
             }
@@ -37,14 +58,16 @@ struct FileListView: View {
     }
 }
 
+let mockArray: [FileTransformModel] = [
+    FileTransformModel.mock(id: 1),
+    FileTransformModel.mock(id: 2),
+    FileTransformModel.mock(id: 3)
+]
+
 struct FileListView_Previews: PreviewProvider {
     static var previews: some View {
         // Sample data for preview; adjust as needed for your FileObj model
-        let sampleFiles = [
-            FileModel(id: UUID().uuidString, url: URL("url")!, originalName: "Document1.pdf", newName: "Document1_Renamed.pdf"),
-            FileModel(id: UUID().uuidString, url: URL("url")!, originalName: "Image1.png", newName: "Image1_Renamed.png")
-        ]
-        return FileListView(sampleFiles)
+        return FileListView(mockArray)
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -30,35 +30,18 @@ struct FileView: View {
         VStack {
             if viewModel.isProcessing {
                 ProgressView("Processing files...")
-            } else if let error = viewModel.errorMessage {
-                Text(error)
-                    .foregroundColor(.red)
-            } else if viewModel.fileObjArr.isEmpty {
-                Text("No audio files found")
+            } else if viewModel.files.isEmpty {
+                Text("No files found")
             } else {
-                FileListView(viewModel.fileObjArr)
-                
-                Button("Rename All Files") {
-                    viewModel.showingConfirmation = true
-                }
-                .padding()
-                .buttonStyle(.borderedProminent)
-                .confirmationDialog("Change background", isPresented: $viewModel.showingConfirmation) {
-                    Button("Cancel", role: .cancel) { }
-                    Button("Confirm") {
-                        print("Confirm Button Pressed!")
-                        viewModel.renameAllFiles()
-                        viewModel.saveToDisk()
-                    }
-                } message: {
-                    Text("Are you sure?")
-                }
+                let fileTransformArray = FileTransformViewModel.generateFileTransformData(from: viewModel.files)
+                let fileTransformViewModel = FileTransformViewModel(fileTransformData: fileTransformArray)
+                FileTransformView(viewModel: fileTransformViewModel)
             }
         }
         .onChange(of: baseFolder) { _, newFolder in
             // When baseFolder changes, update the viewModel's baseFolder and reload
             viewModel.baseFolder = newFolder
-            viewModel.loadAudioFiles()
+            viewModel.loadFiles()
         }
     }
 }
