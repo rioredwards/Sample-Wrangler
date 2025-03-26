@@ -1,0 +1,277 @@
+./perc:top loops/TSP_HE_90_drum_tigersnake_hat.wav
+./perc:top loops/OS_OTK_128_Drum_Loop_2__Tops_.wav
+./perc:top loops/TSP_STRT_V2_145_drum_skew_wyrm_perc.wav
+./perc:top loops/LEX_TE_140_Drum_Loop_Tops_Bishop.wav
+./perc:top loops/TSP_STRT_V2_145_drum_zw_weirdwumpus_top.wav
+./perc:top loops/LEX_TE_143_Drum_Loop_Percussion_Jungle.wav
+./perc:top loops/LEX_PJ_172_Top_Drum_Distro.wav
+./perc:top loops/T_TSSA_126_perc_loop_tour.wav
+./file_list.txt
+./cymbalz/BULLYFINGER_ATTR_cymbal_tr808_ampex_sat_sh_hi.wav
+./cymbalz/PASCAAL_cymbal_one_shot_silver_filter.wav
+./0-coast/OC_LASTLAZERS.wav
+./0-coast/OC_BEEM.wav
+./0-coast/OC_WAH.wav
+./0-coast/OC_WOOO.wav
+./0-coast/OC_PEW.wav
+./0-coast/OCOAST_CRANCHTHICC.wav
+./0-coast/OC_YANNNN.wav
+./0-coast/0COAST_CRANCHH.wav
+./0-coast/OC_WERRRR.wav
+./0-coast/OC_WEER.wav
+./0-coast/OC_ONIYANNA.wav
+./0-coast/OCWOBB.wav
+./drum loops/ML_drum_loop_void_glitch_05_100.wav
+./drum loops/KOAN_SOUND_140_drum_loop_future_step.wav
+./drum loops/ru_ecm_128_modular_drum_loop_aglow.wav
+./drum loops/Amen Break ( Clean No Saturation ) (Freeze) (Freeze) (Freeze) [2024-10-22 215412].wav
+./drum loops/LEX_PJ_170_Full_Drum_Loop_Clean.wav
+./drum loops/SlickClicks_1_-_174_bpm.wav
+./drum loops/Very_Cut_Groove_-_116_bpm.wav
+./drum loops/LEX_PJ_165_Full_Drum_Loop_Strange.wav
+./drum loops/LEX_TE_140_Drum_Loop_Kick_&_Snare_Shook_Up.wav
+./drum loops/LEX_PJ_170_Full_Drum_Loop_Absolute.wav
+./drum loops/ClickyBeat_-_287_bpm.wav
+./drum loops/LEX_PJ_170_Full_Drum_Loop_Basic_Kick_Snare.wav
+./drum loops/LEX_PJ_172_Live_Drum_Loop_Stop_This.wav
+./drum loops/LEX_PJ_172_Full_Drum_Loop_Ugabuga.wav
+./drum loops/LEX_PJ_172_Drum_Fill_Phase.wav
+./drum loops/ClickSequence_-_287.wav
+./drum loops/LEX_PJ_172_Full_Drum_Loop_Titan.wav
+./drum loops/LEX_PJ_170_Full_Drum_Loop_Class.wav
+./drum loops/ru_ecm_80_modular_drum_loop_cimmerian.wav
+./drum loops/nw_PB_72_drums_full_loop_drumming_or_snorkeling.wav
+./drum loops/OS_UKV_125_drum_loop_swish.wav
+./drum loops/ru_ecm_120_kit05_drum_loop_2_F#min.wav
+./drum loops/ru_ecm_85_kit09_drum_loop_1_Ebmaj.wav
+./drum loops/dg3_130_drum_loop_forest_percussion.wav
+./drum loops/Amen Iroh2.wav
+./tom vs con/BULLYFINGER_ATTR_conga_tr808_ampex_sat_m_mid.wav
+./tom vs con/DS_DHT_percussion_tom_one_shot_loud_low.wav
+./tom vs con/BULLYFINGER_ATTR_conga_tr808_ampex_cl_h_low.wav
+./tom vs con/UMRU_tom_808_mid.wav
+./tom vs con/TA_UH_DRUMS_TOMZILLA_PERC_127.wav
+./tom vs con/BULLYFINGER_ATTR_tom_tr808_ampex_sat_h_low.wav
+./tom vs con/BULLYFINGER_ATTR_conga_tr808_ampex_cl_l_hi.wav
+./tom vs con/BULLYFINGER_ATTR_conga_tr808_ampex_cl_l_midlow.wav
+./tom vs con/BULLYFINGER_ATTR_conga_tr808_ampex_sat_l_midlow.wav
+./vocalz/MM_vocal_um.wav
+./vocalz/MM_vocal_cough_1.wav
+./vocalz/PMSH_Vocal_FX_140_Whut.wav
+./vocalz/kuruptfm_onhousemusic_fookoff.m4a
+./vocalz/OS_SV_130_vocal_lead_everything_Em.wav
+./vocalz/MM_vocal_gucci.wav
+./vocalz/Dm 128 Be The Light.wav
+./vocalz/MM_vocal_cough_3.wav
+./vocalz/(vocals) - wecamealive.wav
+./vocalz/[downloader.vevioz.com] Now, Now - Magnet.mp3
+./vocalz/C 120 Rest Of Your Life-Acapella.wav.asd
+./vocalz/MO_DT_140_vocal_loop_squirrel_panned_Gmaj.wav
+./hatz/TSP_HE_hat_closed_razzmatazz.wav
+./hatz/PASCAAL_hihat_one_shot_steel_scissored.wav
+./hatz/BULLYFINGER_ATTR_open_hihat_tr808_ampex_sat_short.wav
+./hatz/Clicky_Hat_Loop_-_160_bpm.wav
+./hatz/IAN_EWING_hihat_one_shot_textured_03.wav
+./hatz/BULLYFINGER_ATTR_open_hihat_tr808_ampex_sat_med.wav
+./hatz/DEFFIE_open_hihat_one_shot_thirty_nine.wav
+./hatz/KMRBI_UKG_hihat_one_shot_chief.wav
+./hatz/MM_hihat_energy_03.wav
+./hatz/PASCAAL_hihat_one_shot_slip_hipass.wav
+./hatz/TSP_PPSG_hi_hat_open_white.wav
+./hatz/PASCAAL_hihat_one_shot_dr_909_closed.wav
+./hatz/tp_uukg_hat_one_shot_mid_vanilla.wav
+./hatz/TSP_HE_hat_closed_starr.wav
+./hatz/TNYSN_percussion_hihat_sharp.wav
+./hatz/rgd_drm130_bashment_hat.wav
+./hatz/CHROME_SPARKS_hihat_808y.wav
+./hatz/BULLYFINGER_ATTR_closed_hihat_tr808_ampex_cl_tape.wav
+./hatz/PASCAAL_hihat_one_shot_blip_noise_hipass.wav
+./hatz/PASCAAL_hihat_one_shot_9oh_plasticky_closed.wav
+./hatz/TSP_HE_hat_closed_ricochet.wav
+./bass/nw_PB_bass_one_shot_simplesubbass_C.wav
+./bass/RU_FD_bass_one_shot_soft_C.wav
+./bass/fd_bass_soft_E.wav
+./bass/TSP_NOISIA_bass_vieze_recht_anders_cleaner_E.wav
+./bass/UM_synth_bass_one_shot_clean_wub_F.wav
+./bass/KOAN_SOUND_bass_wet_filter_02_F.wav
+./bass/nw_PB_74_synth_bass_loop_FMdelays_Bbm.wav
+./bass/KOAN_SOUND_86_bass_loop_neuro_trap_01_F.wav
+./bass/TSP_STRT_V2_808_skew_wyrm_D.wav
+./bass/IAN_EWING_synth_bass_one_shot_young_bigg_F#4.wav
+./bass/RKU_PHK_Bass_Reese_One_Shot_Position_C.wav
+./bass/KOAN_SOUND_bass_wet_n_wide_02_F.wav
+./bass/TSP_DBT_174_bass_synth_soldier_low_Emin.wav
+./bass/tp_uukg_bass_one_shot_bowm_F.wav
+./bass/dg3_130_bass_synth_loop_signal_Amin.wav
+./bass/Decap_Sprout_Analog_808.wav
+./bass/KOAN_SOUND_bass_square_ripple_07_F.wav
+./bass/MM_808_big_B.wav
+./bass/TSP_SDG_131_bass_synth_vinyl_reese_Gmin.wav
+./bass/DEFFIE_808_one_shot_wumbo_G.wav
+./bass/MO_AP_synth_bass_fake_neuro_Dmaj.wav
+./bass/tp_uukg_bass_one_shot_suckup_F.wav
+./bass/TSP_STRT_V2_808_skew_screwd_F.wav
+./bass/LAXCITY_140_bass_loop_revenge_F#min.wav
+./bass/TSP_PPSG_135_bass_synth_timewarp_Fmin.wav
+./bass/KOAN_SOUND_bass_wet_n_wide_01_F.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-158.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-22.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-36.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-37.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-23.wav
+./PACKS/Perc Beach Kit./Beach Stone Percussions One Shots/Beach Stones Percussion-159.wav
+./PACKS/Pots And Pans Drum Kit/Pots And Pans - One Shots/Pots And Pans - One Shots-11.wav
+./PACKS/Pots And Pans Drum Kit/Pots And Pans - One Shots/Pots And Pans - One Shots-39.wav
+./PACKS/Pots And Pans Drum Kit/Pots And Pans - One Shots/Pots And Pans - One Shots-38.wav
+./PACKS/Pots And Pans Drum Kit/Pots And Pans - One Shots/Pots And Pans - One Shots-10.wav
+./PACKS/Home Made Drum Kit #1/Hair Brush Bristles/Hair Brush Bristles-12.wav
+./PACKS/Home Made Drum Kit #1/Hair Brush Bristles/Hair Brush Bristles-13.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Misc/SCP_MUSH_field_rec_other_peacepith.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Misc/SCP_MUSH_field_rec_other_stonepit.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Trees/SCP_MUSH_field_rec_trees_crispr.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Water/SCP_MUSH_field_rec_water_crabhole.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Mushrooms/Honeys/SCP_MUSH_field_rec_honeys_hivemind.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Mushrooms/Honeys/SCP_MUSH_field_rec_honeys_nectar_crunch.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Mushrooms/Polypores/SCP_MUSH_field_rec_polypores_fomitopsis.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Field_Recordings/Mushrooms/Polypores/SCP_MUSH_field_rec_polypores_lingzhi_crisp.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/FX/FX/SCP_MUSH_fx_sapwood_C.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/FX/FX/SCP_MUSH_fx_golemflip.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/FX/FX/SCP_MUSH_fx_nymph.wav
+./PACKS/Mushrooms/SCP_-_Mushrooms/One_Shots/Drums/Hats/SCP_MUSH_drums_hat_dermal
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-5.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-4.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-14.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-28.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-10.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-11.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-3.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Coins In Glass/Coins In Glass-13.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Sounds Made With Mouth (Random FX)/Sounds Made With Mouth (Random)-9.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds04.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds10.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds11.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds05.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds13.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds07.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Forest - Textural Sounds/SignatureSamples.Co.uk Forest - Textural Sounds06.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures)/SignatureSamples.Co.uk Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures) 43.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures)/SignatureSamples.Co.uk Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures) 42.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures)/SignatureSamples.Co.uk Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures) 19.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures)/SignatureSamples.Co.uk Organic Percussions Made From Dragging Feet Through Stones On Ground (Textures) 25.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks-3.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks-6.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks-7.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks-5.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks-4.wav
+./PACKS/Organic Percussions V2 (SignatureSamples.Co.Uk)/Paper Bag Kicks/Paper Bag Kicks.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_percussion_loop_dust_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_data_snare_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_crawl_hat_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_osprey_percussion_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_fox_hat_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_percussion_loop_tribal_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_crisp_hat_114.wav
+./PACKS/Organic Ambient/Organic Ambient/drums_loops/114/oa_drum_loop_data_kick_114.wav
+./PACKS/Organic Ambient/Organic Ambient/melodic_shots/oa_chord_one_shot_piano_book_Fmin.wav
+./PACKS/Organic Ambient/Organic Ambient/melodic_shots/oa_chord_one_shot_piano_stages_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/melodic_shots/oa_chord_one_shot_piano_road_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_stutter_90_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_set_90_Dmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_descent_90_Gmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_lotus_90_Bmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_mild_90_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_gut_90_Fmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_marine_90_Ebmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_zap_90_Abmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_broke_90_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/bass_loops/oa_bass_loop_sub_90_Cmaj.wav
+./PACKS/Organic Ambient/Organic Ambient/music_kits/oa_kit4_enigma_full_90_Amin/oa_kit4_enigma_pad_loop_low_90_Amin.wav
+./PACKS/Organic Ambient/Organic Ambient/music_kits/oa_kit4_enigma_full_90_Amin/oa_kit4_enigma_texture_loop_loop_90_Amin.wav
+./PACKS/Organic Ambient/Organic Ambient/music_kits/oa_kit4_enigma_full_90_Amin/oa_kit4_enigma_full_loop_90_Amin.wav
+./PACKS/Organic Ambient/Organic Ambient/music_kits/oa_kit4_enigma_full_90_Amin/oa_kit4_enigma_pad_loop_high_90_Amin.wav
+./PACKS/Piano Chord Progressions/Piano Prog 05-3 Emin 85BPM.wav
+./PACKS/Piano Chord Progressions/Piano Prog 04-1 F#min 85BPM.wav
+./PACKS/Piano Chord Progressions/Midi 15 Dmin.mid
+./PACKS/Piano Chord Progressions/Midi 14 Dmin.mid
+./PACKS/Piano Chord Progressions/Piano Prog 11-1 Gmaj 85BPM.wav
+./PACKS/Piano Chord Progressions/Midi 8 EMin.mid
+./PACKS/Piano Chord Progressions/Piano Midi 4.mid
+./synth/tp_uukg_synth_one_shot_dominate_F.wav
+./synth/MO_AP_synth_spiral_blip_arp_Abmaj.wav
+./synth/ru_ecm_92_kit10_arp_loop_1_Gmin.wav
+./synth/LEX_PJ_172_Synth_Pad_Loop_Flangus_D#m.wav
+./synth/RU_JEA_synth_incense_Amin.wav
+./synth/nw_PB_65_synth_lead_loop_filter_lead_Fm.wav
+./synth/TNYSN_tonal_one_shot_aphex_02_C#.wav
+./synth/MO_SV1_synth_liminal_C.wav
+./synth/MO_AP_synth_maylight_glock_grains_Amaj.wav
+./synth/RU_JEA_synth_chord_mizudori_Amin.wav
+./synth/RU_JEA_synth_chord_small_birds_C_min.wav
+./synth/LEX_PJ_172_Synth_Pad_Loop_Cable_Dm.wav
+./synth/ff_mt2_125_synth_loop_minimalism_Amaj.wav
+./synth/MO_CUT_tonal_pad_injury_C.wav
+./synth/PMCS_Melodic_One_Shot_3_C.wav
+./synth/ru_ecm_122_modular_atmosphere_loop_melancholy_Bmin.wav
+./synth/TNYSN_chord_loop_streamer_95_Gbmaj.wav
+./synth/RU_JEA_synth_morning_A.wav
+./synth/nw_PB_66_electricpiano_loop_hopefulchords_Cm.wav
+./synth/RU_SFR_122_chords_wood_Gmin.wav
+./synth/RU_JEA_synth_chord_kirameki_Bmin.wav
+./synth/TNYSN_tonal_one_shot_temple_bell_01_A#.wav
+./synth/nw_PB_72_electricpiano_loop_spookychords_Ebm.wav
+./synth/nw_PB_65_synth_lead_loop_wobbly_noisy_Fm.wav
+./synth/ru_ecm_126_modular_sequence_loop_sweltering_E.wav
+./synth/MNT_LR_modular_one_shot_chord_soft_C.wav
+./synth/RU_JEA_synth_chord_bouncing_low_D.wav
+./synth/MO_CUT_143_melody_feral_carnival_G#maj.wav
+./synth/nw_PB_74_synth_eurorack_loop_abandoned_pool_Bbm.wav
+./synth/TNYSN_tonal_one_shot_symphony_A.wav
+./synth/TSP_SDG_131_synth_chord_dot_wob_Abmin.wav
+./synth/nw_PB_65_synth_eurorack_loop_atmospheric_vibes_Fm.wav
+./synth/MO_CUT_160_melodic_phrase_storm_in_a_teacup_Ebmaj.wav
+./synth/KOAN_SOUND_synth_pad_verb_09_Abmaj.wav
+./synth/TNYSN_chord_loop_wintersleep_86_Cmin.wav
+./synth/ru_ecm_120_modular_atmosphere_loop_heartbroken_Cmin.wav
+./synth/RU_JEA_80_synth_melody_aquatic_Bmin.wav
+./synth/RU_JEA_synth_chord_mizudori_E.wav
+./synth/TSP_STRT_V2_168_synth_stack_skew_zelda_D#min.wav
+./synth/MM_tonal_loop_phase_chords_150_Ebm.wav
+./synth/ru_ecm_122_modular_atmosphere_loop_foggy_Bbmin.wav
+./synth/nw_PB_synth_one_shot_lofisynthkeys_C.wav
+./synth/OS_SV_130_synth_pad_chords_hearts_F#.wav
+./synth/MO_CUT_145_melody_exit_stage_left_Amaj.wav
+./synth/nw_PB_70_keys_loop_snowy_pad_Gm.wav
+./synth/TNYSN_melody_loop_kona_01_122_Bmin.wav
+./synth/MM_synth_one_shot_bassy_G.wav
+./synth/TNYSN_melody_loop_tabla_bells_63_Ebmaj.wav
+./synth/OS_SV_80_electric_piano_chords_cream_Bm.wav
+./synth/MM_synth_loop_wow_Cm_125.wav
+./synth/nw_PB_69_keys_loop_pianograins_Bm.wav
+./synth/nw_PB_74_synth_lead_loop_kyoto_plucks_Bbm.wav
+./snerz/nw_PB_drums_snare_one_shot_high_rim_hit.wav
+./snerz/DEFFIE_snare_one_shot_dragon.wav
+./snerz/RU_FP_drums_snare_pop_perc.wav
+./snerz/nw_PB_drums_snare_one_shot_foley_layered.wav
+./snerz/LEX_PJ_Snare_Double.wav
+./snerz/KOAN_SOUND_snare_ghost_01.wav
+./snerz/SO_RE_snare_purple.wav
+./clap n snap/TSP_HT_clap_trash.wav
+./clap n snap/LEX_TE_Clap_Jumpy.wav
+./shakerz/rgd_shk_machinist3.wav
+./shakerz/STCR2_MTA_135_Kit_Loop_Culture_Shaker.wav
+./shakerz/Shaker.wav
+./shakerz/TSP_TJD_174_shaker_classic.wav
+./shakerz/BS_NCSS_135_percussion_shaker_albany.wav
+./fx n txtr/TSP_PPSG_135_fx_soundclash_ray.wav
+./fx n txtr/DEFFIE_fx_one_shot_crunchlife.wav
+./fx n txtr/LAXCITY_fx_oasis.wav
+./percs misc/UMRU_percussion_glass_01.wav
+./percs misc/TSP_HE_perc_joropo.wav
+./percs misc/PASCAAL_percussion_one_shot_machine_shake_hipass_02.wav
+./percs misc/TSP_STRT_V2_perc_foley_zw_froggy_skully.wav
+./percs misc/Minimal_Tech_Pop_1.wav
+./percs misc/PASCAAL_percussion_one_shot_blip_tape.wav
+./percs misc/IAN_EWING_percussion_one_shot_clankk_wide.wav
+./percs misc/Minimal_Tech_Pop_3.wav
+./percs misc/TSP_HE_perc_copeland.wav
+./percs misc/Decap_Soundshape_Hit_5.wav

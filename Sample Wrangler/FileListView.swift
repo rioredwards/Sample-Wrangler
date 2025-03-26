@@ -11,18 +11,40 @@ extension FileTransformModel {
     var sortOrder: Int {
         var order = 0
         if self.isMusicFile {
-            order += 1
+            order -= 1
         }
         if self.isBPMDetected {
-            order += 1
+            order -= 1
         }
         if self.isKeyDetected {
-            order += 1
+            order -= 1
         }
         if self.isRenamable {
-            order += 1
+            order -= 1
         }
         return order
+    }
+}
+
+
+extension Color {
+    static let fileGreen = Color(red: 0.0, green: 0.8, blue: 0.0)
+    static let fileYellow = Color(red: 1.0, green: 0.8, blue: 0.0)
+    static let fileRed = Color(red: 1.0, green: 0.0, blue: 0.0)
+}
+
+enum FileColors {
+    case green, yellow, red
+    
+    var color: Color {
+        switch self {
+        case .green:
+            return Color.fileGreen
+        case .yellow:
+            return Color.fileYellow
+        case .red:
+            return Color.fileRed
+        }
     }
 }
 
@@ -34,25 +56,34 @@ struct FileListView: View {
         self.fileTransformArr = fileTransformArr
     }
     
-    @State private var sortOrder = [KeyPathComparator(\FileTransformModel.sortOrder)]
-    
     var body: some View {
         if !fileTransformArr.isEmpty {
-            Table(fileTransformArr, selection: $selection,sortOrder: $sortOrder) {
-                TableColumn("Current Name") { (fileTransform: FileTransformModel) in
-                    Text(fileTransform.prevName)
-                        .help(fileTransform.prevName)
+            let sorted = Array(fileTransformArr).sorted { $0.sortOrder < $1.sortOrder }
+            
+            ScrollView {
+                LazyVStack(spacing: 4) {
+                    ForEach(sorted) { fileTransform in
+                        HStack {
+                            Text(fileTransform.prevName)
+                                .help(fileTransform.prevName)
+                                .frame( maxWidth: 300, alignment: .leading)
+                            Image(systemName: "arrow.right")
+                            Text(fileTransform.newName ?? "")
+                                .help(fileTransform.newName ?? "")
+                                .frame(alignment: .leading)
+                        }
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            (fileTransform.isRenamable ? FileColors.green.color : FileColors.red.color).opacity(0.15)
+                        )
+                        .clipShape(Capsule())
+                    }
                 }
-                .width(min: 200)
-                TableColumn("") { file in
-                    Image(systemName: "arrow.right")
-                }
-                .width(16)
-                TableColumn("New Name") { (fileTransform: FileTransformModel) in
-                    Text(fileTransform.newName ?? "")
-                        .help(fileTransform.newName ?? "")
-                }
-                .width(min: 200)
+                .padding(.horizontal)
             }
         }
     }
