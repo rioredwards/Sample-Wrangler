@@ -25,20 +25,24 @@ class FileTransformViewModel: ObservableObject {
                 let prevName = fileName
                 let isMusicFile = fileIsAudio(at: file)
                 
-                let keyResult = BPMExtractor.extractKey(from: fileName)
                 var isKeyDetected: Bool = false
                 var fileNameWithUpdatedKey: String?
-                if let keyResult = keyResult {
-                    isKeyDetected = true
-                    fileNameWithUpdatedKey = "\(keyResult.key)_\(keyResult.updatedFile)"
+                if isMusicFile {
+                    let keyResult = BPMExtractor.extractKey(from: fileName)
+                    if let keyResult = keyResult {
+                        isKeyDetected = true
+                        fileNameWithUpdatedKey = "\(keyResult.key)_\(keyResult.updatedFile)"
+                    }
                 }
                 
-                let bpmResult = BPMExtractor.extractBPM(from: fileNameWithUpdatedKey ?? fileName)
                 var isBPMDetected: Bool = false
                 var fileNameWithUpdatedBPM: String?
-                if let bpmResult = bpmResult {
-                    isBPMDetected = true
-                    fileNameWithUpdatedBPM = "\(bpmResult.bpm)_\(bpmResult.updatedFile)"
+                if isMusicFile {
+                    let bpmResult = BPMExtractor.extractBPM(from: fileNameWithUpdatedKey ?? fileName)
+                    if let bpmResult = bpmResult {
+                        isBPMDetected = true
+                        fileNameWithUpdatedBPM = "\(bpmResult.bpm)_\(bpmResult.updatedFile)"
+                    }
                 }
                 
                 let isRenamable = isMusicFile && (isBPMDetected || isKeyDetected)
@@ -47,33 +51,8 @@ class FileTransformViewModel: ObservableObject {
             }
             return files
         } else {
-           return []
+            return []
         }
-    }
-    
-    static func extractBPM(from fileName: String) -> (bpm: Int, fileName: String)? {
-        let pattern = "(?i)\\b(\\d+)\\s*bpm\\b"
-        guard let regex = try? NSRegularExpression(pattern: pattern) else {
-            return nil
-        }
-        let nsRange = NSRange(fileName.startIndex..<fileName.endIndex, in: fileName)
-        guard let match = regex.firstMatch(in: fileName, options: [], range: nsRange) else {
-            return nil
-        }
-        // Capture the BPM number from the first capturing group
-        guard let bpmRange = Range(match.range(at: 1), in: fileName),
-              let bpm = Int(String(fileName[bpmRange])) else {
-            return nil
-        }
-        // Remove the entire matched BPM string from the file name
-        guard let fullMatchRange = Range(match.range, in: fileName) else {
-            return nil
-        }
-        var updatedFileName = fileName
-        updatedFileName.removeSubrange(fullMatchRange)
-        updatedFileName = updatedFileName.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        return (bpm: bpm, fileName: updatedFileName)
     }
     
     static private func fileIsAudio(at fileURL: URL) -> Bool {
@@ -83,16 +62,6 @@ class FileTransformViewModel: ObservableObject {
         return false
     }
     
-    
-    static private func getNewFileName(from original: String) -> String {
-        if original.contains("frog") {
-            return original.replacingOccurrences(of: "frog", with: "cow")
-        } else if original.contains("cow") {
-            return original.replacingOccurrences(of: "cow", with: "frog")
-        } else {
-            return original
-        }
-    }
     
     func renameAllFiles() {
         isProcessing = true

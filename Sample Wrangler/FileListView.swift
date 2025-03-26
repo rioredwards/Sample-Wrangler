@@ -9,17 +9,29 @@ import SwiftUI
 
 extension FileTransformModel {
     var sortOrder: Int {
-        var order = 0
-        if self.isRenamable {
-            order -= 10
+        if self.isBPMDetected && self.isKeyDetected {
+            return 0
         }
         if self.isBPMDetected {
-            order -= 2
+            return 1
         }
         if self.isKeyDetected {
-            order -= 1
+            return 2
         }
-        return order
+        return 3
+    }
+    
+    var color: Color {
+        switch self.sortOrder {
+        case 0:
+            return FileColors.green.color
+        case 1:
+            return FileColors.yellow.color
+        case 2:
+            return FileColors.orange.color
+        default:
+            return FileColors.red.color
+        }
     }
 }
 
@@ -27,11 +39,12 @@ extension FileTransformModel {
 extension Color {
     static let fileGreen = Color(red: 0.0, green: 0.8, blue: 0.0)
     static let fileYellow = Color(red: 1.0, green: 0.8, blue: 0.0)
+    static let fileOrange: Color = .init(red: 0.95, green: 0.4, blue: 0.1)
     static let fileRed = Color(red: 1.0, green: 0.0, blue: 0.0)
 }
 
 enum FileColors {
-    case green, yellow, red
+    case green,  yellow, orange, red
     
     var color: Color {
         switch self {
@@ -39,6 +52,8 @@ enum FileColors {
             return Color.fileGreen
         case .yellow:
             return Color.fileYellow
+        case .orange:
+            return Color.fileOrange
         case .red:
             return Color.fileRed
         }
@@ -63,7 +78,7 @@ struct FileListView: View {
                         HStack {
                             Text(fileTransform.prevName)
                                 .help(fileTransform.prevName)
-                                .frame( maxWidth: 300, alignment: .leading)
+                                .frame( maxWidth: 400, alignment: .leading)
                             Image(systemName: "arrow.right")
                             Text(fileTransform.newName ?? "")
                                 .help(fileTransform.newName ?? "")
@@ -75,7 +90,7 @@ struct FileListView: View {
                         .padding(.vertical, 4)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(
-                            (fileTransform.isRenamable ? FileColors.green.color : FileColors.red.color).opacity(0.15)
+                            (fileTransform.color).opacity(0.15)
                         )
                         .clipShape(Capsule())
                     }
