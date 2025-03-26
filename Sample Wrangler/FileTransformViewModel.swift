@@ -25,12 +25,12 @@ class FileTransformViewModel: ObservableObject {
                 let prevName = fileName
                 let isMusicFile = fileIsAudio(at: file)
                 
-                let bpmResult = extractBPM(from: fileName)
+                let bpmResult = BPMExtractor.extractBPM(from: fileName)
                 var isBPMDetected: Bool = false
                 var fileNameWithUpdatedBPM: String?
                 if let bpmResult = bpmResult {
                     isBPMDetected = true
-                    fileNameWithUpdatedBPM = "\(bpmResult.bpm)bpm_\(bpmResult.fileName)"
+                    fileNameWithUpdatedBPM = "\(bpmResult.bpm)_\(bpmResult.updatedFile)"
                 }
                 
                 let isKeyDetected = false // TODO implement

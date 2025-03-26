@@ -274,3 +274,9 @@ IAN_EWING_percussion_one_shot_clankk_wide.wav
 Minimal_Tech_Pop_3.wav
 TSP_HE_perc_copeland.wav
 Decap_Soundshape_Hit_5.wav
+
+// Match any number between 40 and 210 (inclusive) followed by any number of whitespace (or whitespace adjacent) characters, followed by the literal string "bpm"
+(?:40|4[1-9]|[5-9]\d|1\d\d|20\d|210)[-_ \t]*bpm
+
+// Match any number between 40 and 210 (inclusive)
+(?<!\d)(?:40|4[1-9]|[5-9]\d|1\d\d|20\d|210)(?!\d)
