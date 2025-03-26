@@ -25,7 +25,15 @@ class FileTransformViewModel: ObservableObject {
                 let prevName = fileName
                 let isMusicFile = fileIsAudio(at: file)
                 
-                let bpmResult = BPMExtractor.extractBPM(from: fileName)
+                let keyResult = BPMExtractor.extractKey(from: fileName)
+                var isKeyDetected: Bool = false
+                var fileNameWithUpdatedKey: String?
+                if let keyResult = keyResult {
+                    isKeyDetected = true
+                    fileNameWithUpdatedKey = "\(keyResult.key)_\(keyResult.updatedFile)"
+                }
+                
+                let bpmResult = BPMExtractor.extractBPM(from: fileNameWithUpdatedKey ?? fileName)
                 var isBPMDetected: Bool = false
                 var fileNameWithUpdatedBPM: String?
                 if let bpmResult = bpmResult {
@@ -33,10 +41,9 @@ class FileTransformViewModel: ObservableObject {
                     fileNameWithUpdatedBPM = "\(bpmResult.bpm)_\(bpmResult.updatedFile)"
                 }
                 
-                let isKeyDetected = false // TODO implement
                 let isRenamable = isMusicFile && (isBPMDetected || isKeyDetected)
-                let newName = isRenamable ? fileName : nil
-                return FileTransformModel(id: id, url: file, newName: fileNameWithUpdatedBPM, prevName: prevName, isRenamable: isRenamable, isMusicFile: isMusicFile, isBPMDetected: isBPMDetected, isKeyDetected: isKeyDetected)
+                let newName = isRenamable ? fileNameWithUpdatedBPM ?? fileNameWithUpdatedKey : nil
+                return FileTransformModel(id: id, url: file, newName: newName, prevName: prevName, isRenamable: isRenamable, isMusicFile: isMusicFile, isBPMDetected: isBPMDetected, isKeyDetected: isKeyDetected)
             }
             return files
         } else {

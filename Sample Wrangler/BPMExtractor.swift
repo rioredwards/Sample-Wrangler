@@ -30,6 +30,8 @@ class BPMExtractor {
             var updatedFile = file
             updatedFile.removeSubrange(fullMatchRange)
             updatedFile = updatedFile.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Remove any dashes, underscores, or whitespace directly before the file extension.
+            updatedFile = updatedFile.replacingOccurrences(of: "[-_\\s]+(?=\\.[^.]+$)", with: "", options: .regularExpression)
             return (bpm, updatedFile)
         }
 
@@ -42,9 +44,34 @@ class BPMExtractor {
             var updatedFile = file
             updatedFile.removeSubrange(fullMatchRange)
             updatedFile = updatedFile.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Remove any dashes, underscores, or whitespace directly before the file extension.
+            updatedFile = updatedFile.replacingOccurrences(of: "[-_\\s]+(?=\\.[^.]+$)", with: "", options: .regularExpression)
             return (bpm, updatedFile)
         }
 
+        return nil
+    }
+    
+    
+    static func extractKey(from file: String) -> (key: String, updatedFile: String)? {
+        // Pattern that matches a musical key followed by optional separators and the literal "key"
+        let keyPattern = "(?i)(?:(?<=^)|(?<=[_\\-\\s]))([A-G](?:#|b)?(?:maj(?:or)?|m|min(?:or)?)?)(?=\\.[^.]+$)"
+        
+        let keyRegex = try? NSRegularExpression(pattern: keyPattern)
+        
+        let range = NSRange(file.startIndex..<file.endIndex, in: file)
+        
+        // Try the key pattern.
+        if let match = keyRegex?.firstMatch(in: file, options: [], range: range),
+           let keyRange = Range(match.range(at: 1), in: file),
+           let fullMatchRange = Range(match.range, in: file) {
+            let key = String(file[keyRange])
+            var updatedFile = file
+            updatedFile.removeSubrange(fullMatchRange)
+            updatedFile = updatedFile.trimmingCharacters(in: .whitespacesAndNewlines)
+            return (key, updatedFile)
+        }
+        
         return nil
     }
 }

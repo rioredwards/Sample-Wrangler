@@ -10,16 +10,13 @@ import SwiftUI
 extension FileTransformModel {
     var sortOrder: Int {
         var order = 0
-        if self.isMusicFile {
-            order -= 1
+        if self.isRenamable {
+            order -= 10
         }
         if self.isBPMDetected {
-            order -= 1
+            order -= 2
         }
         if self.isKeyDetected {
-            order -= 1
-        }
-        if self.isRenamable {
             order -= 1
         }
         return order
