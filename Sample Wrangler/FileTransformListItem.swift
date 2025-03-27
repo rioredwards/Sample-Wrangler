@@ -12,6 +12,7 @@ struct FileTransformListItem: Identifiable, View {
     var prevName: String
     var newName: String?
     var color: Color
+    var isComplete: Bool
     
     var body: some View {
         HStack {
@@ -29,7 +30,7 @@ struct FileTransformListItem: Identifiable, View {
         .padding(.vertical, 4)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            (color).opacity(0.15)
+            !isComplete ? (color).opacity(0.15) : Color.blue.opacity(0.15)
         )
         .clipShape(Capsule())
     }

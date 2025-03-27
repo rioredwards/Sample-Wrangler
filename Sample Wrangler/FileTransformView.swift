@@ -11,7 +11,8 @@ import SwiftUI
 // View that uses the ViewModel
 struct FileTransformView: View {
     @ObservedObject private var viewModel: FileTransformViewModel
-    @State private var showingConfirmation = false
+    @State private var showingConfirmationForRename = false
+    @State private var showingConfirmationForRevert = false
     let baseFolder: URL
     
     init(viewModel: FileTransformViewModel, baseFolder: URL) {
@@ -23,11 +24,11 @@ struct FileTransformView: View {
         FileListView(viewModel.fileTransformData)
         
         Button("Rename All Files") {
-            showingConfirmation = true
+            showingConfirmationForRename = true
         }
         .padding()
         .buttonStyle(.borderedProminent)
-        .confirmationDialog("Are you sure?", isPresented: $showingConfirmation) {
+        .confirmationDialog("Are you sure?", isPresented: $showingConfirmationForRename) {
             Button("Cancel", role: .cancel) { }
             Button("Confirm") {
                 print("Confirm Button Pressed!")
@@ -40,8 +41,17 @@ struct FileTransformView: View {
         
         
         Button("Revert") {
-            viewModel.revertAllFileRenames()
-            
+            showingConfirmationForRevert = true
         }
+        .confirmationDialog("Are you sure?", isPresented: $showingConfirmationForRevert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Confirm") {
+                print("Confirm Button Pressed!")
+                viewModel.revertAllFileRenames()
+            }
+        } message: {
+            Text("Are you sure?")
+        }
+        
     }
 }

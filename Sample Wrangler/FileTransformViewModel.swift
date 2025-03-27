@@ -76,6 +76,7 @@ class FileTransformViewModel: ObservableObject {
                 if let newName = fileTransform.newName {
                     let newURL = try renameFile(at: fileTransform.url, to: newName)
                     fileTransformData[idx].url = newURL
+                    fileTransformData[idx].isComplete = true
                 } else {
                     fatalError("Tried to rename file with no new name!")
                 }
@@ -94,12 +95,13 @@ class FileTransformViewModel: ObservableObject {
         let prevFileTransforms = getTransformationLog()
         guard prevFileTransforms != nil else { return  }
         
-        for idx in 0...fileTransformData.count - 1 {
+        for idx in 0..<fileTransformData.count {
             let fileTransform = fileTransformData[idx]
             if fileTransform.isRenamable == false { continue }
             do {
                 let newURL = try renameFile(at: fileTransform.url, to: fileTransform.prevName)
                 fileTransformData[idx].url = newURL
+                fileTransformData[idx].isComplete = false
             } catch {
                 errorMessage = "Error renaming files: \(error.localizedDescription)"
             }

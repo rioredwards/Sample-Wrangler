@@ -14,7 +14,7 @@ struct FileTransformModel: Codable, Identifiable {
     let prevName: String
     
     let isRenamable: Bool
-    let isComplete: Bool
+    var isComplete: Bool
     let isMusicFile: Bool
     let isBPMDetected: Bool
     let isKeyDetected: Bool

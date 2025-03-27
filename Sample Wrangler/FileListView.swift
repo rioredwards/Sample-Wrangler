@@ -74,7 +74,7 @@ struct FileListView: View {
             ScrollView {
                 LazyVStack(spacing: 4) {
                     ForEach(sorted) { fileTransform in
-                        FileTransformListItem(id: fileTransform.id, prevName: fileTransform.prevName, newName: fileTransform.newName, color: fileTransform.color)
+                        FileTransformListItem(id: fileTransform.id, prevName: fileTransform.prevName, newName: fileTransform.newName, color: fileTransform.color, isComplete: fileTransform.isComplete)
                     }
                     .padding(.horizontal)
                 }
