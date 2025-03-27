@@ -77,7 +77,10 @@ struct FileListView: View {
                     }
                     .padding(.horizontal)
                 }
-            }.padding(12)
+            }
+            .padding(12)
+            .background(Color.black.opacity(0.4))
+            .clipShape(.rect(cornerRadius: 12))
         }
     }
 }
