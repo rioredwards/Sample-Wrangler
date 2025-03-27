@@ -13,5 +13,6 @@ struct Sample_WranglerApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
     }
 }

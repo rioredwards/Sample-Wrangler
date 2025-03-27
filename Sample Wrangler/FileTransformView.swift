@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+enum ButtonType {
+    case rename, revert
+}
+
 // View that uses the ViewModel
 struct FileTransformView: View {
     @ObservedObject private var viewModel: FileTransformViewModel
@@ -23,35 +27,47 @@ struct FileTransformView: View {
     var body: some View {
         FileListView(viewModel.fileTransformData)
         
-        Button("Rename All Files") {
-            showingConfirmationForRename = true
-        }
-        .padding()
-        .buttonStyle(.borderedProminent)
-        .confirmationDialog("Are you sure?", isPresented: $showingConfirmationForRename) {
-            Button("Cancel", role: .cancel) { }
-            Button("Confirm") {
-                print("Confirm Button Pressed!")
-                viewModel.renameAllFiles()
-                viewModel.saveToDisk()
+        HStack{
+            Button(action: { showingConfirmationForRename = true }) {
+                HStack {
+                    Text("Revert")
+                    .font(.system(size: 14))
+                    Image(systemName: "arrow.uturn.backward")
+                    .font(.system(size: 14))
+                }
+                .frame(minWidth: 150)
             }
-        } message: {
-            Text("Are you sure?")
+            .confirmationDialog("Revert All Renamed Files?", isPresented: $showingConfirmationForRevert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Confirm") {
+                    viewModel.revertAllFileRenames()
+                }
+            } message: {
+                Text("Are you sure?")
+            }.buttonStyle(MyDestructiveButton())
+            
+            Button(action: { showingConfirmationForRename = true }) {
+                HStack {
+                    Text("Rename All Files")
+                    .font(.system(size: 14))
+                    Image(systemName: "play.square.stack.fill")
+                    .font(.system(size: 14))
+                }
+                .frame(minWidth: 150)
+            }
+            .buttonStyle(MyOtherCoolButton())
+            .confirmationDialog("Rename All Files?", isPresented: $showingConfirmationForRename) {
+                Button("Cancel", role: .cancel) { }
+                Button("Confirm") {
+                    viewModel.renameAllFiles()
+                    viewModel.saveToDisk()
+                }
+            } message: {
+                Text("Are you sure?")
+            }
+            
         }
         
-        
-        Button("Revert") {
-            showingConfirmationForRevert = true
-        }
-        .confirmationDialog("Are you sure?", isPresented: $showingConfirmationForRevert) {
-            Button("Cancel", role: .cancel) { }
-            Button("Confirm") {
-                print("Confirm Button Pressed!")
-                viewModel.revertAllFileRenames()
-            }
-        } message: {
-            Text("Are you sure?")
-        }
         
     }
 }

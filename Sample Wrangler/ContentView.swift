@@ -38,7 +38,15 @@ struct ContentView: View {
                 Spacer()
             }
         }
-        .padding()
+        .padding(20)
+//        Add background image
+        .frame(width: 1200, height: 700, alignment: .center )
+        .background(Image("bg")
+        .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 1200, height: 700)
+                .clipped()
+        )
     }
 }
 

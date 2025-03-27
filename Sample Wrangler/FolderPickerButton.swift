@@ -13,14 +13,18 @@ struct FolderPickerButton: View {
     @Binding var baseFolder: URL?
     
     var body: some View {
+        
         Button(action: selectFolder) {
             HStack {
-                Image(systemName: "folder")
                 Text("Select Folder")
+                .font(.system(size: 16, weight: .bold))
+                // Large text
+                Image(systemName: "folder.fill.badge.plus")
+                .font(.system(size: 18, weight: .bold))
             }
             .frame(minWidth: 150)
         }
-        .buttonStyle(.borderedProminent)
+        .buttonStyle(MyCoolButton())
     }
     
     private func selectFolder() {
