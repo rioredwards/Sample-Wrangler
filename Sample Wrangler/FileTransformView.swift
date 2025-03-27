@@ -12,9 +12,11 @@ import SwiftUI
 struct FileTransformView: View {
     @ObservedObject private var viewModel: FileTransformViewModel
     @State private var showingConfirmation = false
+    let baseFolder: URL
     
-    init(viewModel: FileTransformViewModel) {
+    init(viewModel: FileTransformViewModel, baseFolder: URL) {
         _viewModel = .init(wrappedValue: viewModel)
+        self.baseFolder = baseFolder
     }
     
     var body: some View {

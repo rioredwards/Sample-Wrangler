@@ -34,8 +34,8 @@ struct FileView: View {
                 Text("No files found")
             } else {
                 let fileTransformArray = FileTransformViewModel.generateFileTransformData(from: viewModel.files)
-                let fileTransformViewModel = FileTransformViewModel(fileTransformData: fileTransformArray)
-                FileTransformView(viewModel: fileTransformViewModel)
+                let fileTransformViewModel = FileTransformViewModel(fileTransformData: fileTransformArray, baseURL: baseFolder)
+                FileTransformView(viewModel: fileTransformViewModel, baseFolder: baseFolder)
             }
         }
         .onChange(of: baseFolder) { _, newFolder in
