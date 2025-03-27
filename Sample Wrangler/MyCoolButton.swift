@@ -7,12 +7,20 @@
 
 import SwiftUI
 
+enum ButtonSize {
+    case small
+    case medium
+    case large
+}  
+
 struct MyCoolButton: ButtonStyle {
+    var size: ButtonSize = .medium
+
     func makeBody(configuration: Configuration) -> some View {
         HoverView {
             configuration.label
-                .padding(.horizontal, 32)
-                .padding(.vertical, 12)
+                .padding(.horizontal, size == .small ? 16 : size == .medium ? 24 : 32)
+                .padding(.vertical, size == .small ? 8 : size == .medium ? 12 : 16)
                 .focusable(false)
                 .background(Color($0 ? "MyPrimaryColorHover" : "MyPrimaryColor"))
                 .clipShape(Capsule())

@@ -22,14 +22,14 @@ struct FolderPickerButton: View {
         Button(action: selectFolder) {
             HStack {
                 Text(buttonType == .changeFolder ? "Change Folder" : "Select Folder")
-                    .font(.system(size: buttonType == .changeFolder ? 14 : 16, weight: .bold))
+                    .font(.system(size: buttonType == .changeFolder ? 12 : 16, weight: .bold))
                 // Large text
                 Image(systemName: "folder.fill.badge.plus")
-                .font(.system(size: buttonType == .changeFolder ? 14 : 16, weight: .bold))
+                .font(.system(size: buttonType == .changeFolder ? 12 : 16, weight: .bold))
             }
             .frame(minWidth: 150)
         }
-        .buttonStyle( MyCoolButton())
+        .buttonStyle(MyCoolButton(size: buttonType == .selectFolder ? .medium : .small))
         .focusable(false)
     }
     
