@@ -10,6 +10,7 @@ import SwiftUI
 // Main ViewModel to handle application state
 class AppViewModel: ObservableObject {
     @Published var baseFolder: URL? = nil
+    @Published var audioPlayer = AudioPlayerService()
     
     func selectFolder(url: URL) {
         baseFolder = url
@@ -45,7 +46,7 @@ struct ContentView: View {
                     
                     Text(
                          """
-Welcome to Sample Wrangler — the fastest way this side o' the Mississippi to get your audio files in line. Just drop a folder of unruly samples into the corral, and we'll rustle up their names nice and tidy. Key, BPM, the whole shebang — right up front where it belongs. Take a peek at the preview, and when you’re ready, give the word. We’ll do the fixin’, you do the mixin’!
+Welcome to Sample Wrangler — the fastest way this side o' the Mississippi to get your audio files in line. Just drop a folder of unruly samples into the corral, and we'll rustle up their names nice and tidy. Key, BPM, the whole shebang — right up front where it belongs. Take a peek at the preview, and when you're ready, give the word. We'll do the fixin', you do the mixin'!
 """
                     )
                     .font(.system(size: 18))
@@ -83,6 +84,23 @@ Welcome to Sample Wrangler — the fastest way this side o' the Mississippi to g
                 .frame(width: 1200, height: 700)
                 .clipped()
         )
+        .overlay(alignment: .topTrailing) {
+            Button(action: {
+                viewModel.audioPlayer.togglePlayback()
+            }) {
+                Image(systemName: viewModel.audioPlayer.isPlaying ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                    .font(.system(size: 24))
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.4))
+                    .clipShape(Circle())
+            }
+            .buttonStyle(.plain)
+            .padding(20)
+        }
+        .onAppear {
+            viewModel.audioPlayer.play()
+        }
     }
 }
 
