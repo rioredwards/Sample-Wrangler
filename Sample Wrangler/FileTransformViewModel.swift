@@ -18,6 +18,7 @@ class FileTransformViewModel: ObservableObject {
     }
     
     static func generateFileTransformData(from files: [URL]) -> [FileTransformModel] {
+        print("viewModel.files", files)
         if !files.isEmpty {
             let files = files.map { file in
                 let id = UUID().uuidString
@@ -28,7 +29,7 @@ class FileTransformViewModel: ObservableObject {
                 var isKeyDetected: Bool = false
                 var fileNameWithUpdatedKey: String?
                 if isMusicFile {
-                    let keyResult = BPMExtractor.extractKey(from: fileName)
+                    let keyResult = BPMAndKeyExtractor.extractKey(from: fileName)
                     if let keyResult = keyResult {
                         isKeyDetected = true
                         fileNameWithUpdatedKey = "\(keyResult.key)_\(keyResult.updatedFile)"
@@ -38,7 +39,7 @@ class FileTransformViewModel: ObservableObject {
                 var isBPMDetected: Bool = false
                 var fileNameWithUpdatedBPM: String?
                 if isMusicFile {
-                    let bpmResult = BPMExtractor.extractBPM(from: fileNameWithUpdatedKey ?? fileName)
+                    let bpmResult = BPMAndKeyExtractor.extractBPM(from: fileNameWithUpdatedKey ?? fileName)
                     if let bpmResult = bpmResult {
                         isBPMDetected = true
                         fileNameWithUpdatedBPM = "\(bpmResult.bpm)_\(bpmResult.updatedFile)"
@@ -67,11 +68,13 @@ class FileTransformViewModel: ObservableObject {
         isProcessing = true
         errorMessage = nil
         
-        for fileTransform in fileTransformData {
+        for idx in 0...fileTransformData.count - 1 {
+            let fileTransform = fileTransformData[idx]
             if fileTransform.isRenamable == false { continue }
             do {
                 if let newName = fileTransform.newName {
-                    try renameFile(at: fileTransform.url, to: newName)
+                    let newURL = try renameFile(at: fileTransform.url, to: newName)
+                    fileTransformData[idx].url = newURL
                 } else {
                     fatalError("Tried to rename file with no new name!")
                 }
@@ -83,12 +86,52 @@ class FileTransformViewModel: ObservableObject {
         isProcessing = false
     }
     
-    private func renameFile(at originalURL: URL, to newName: String) throws {
+    func revertAllFileRenames() {
+        isProcessing = true
+        errorMessage = nil
+        
+        let prevFileTransforms = Self.getTransformationLog()
+        guard let prevFileTransforms = prevFileTransforms else { return  }
+        
+        for idx in 0...fileTransformData.count - 1 {
+            let fileTransform = fileTransformData[idx]
+            if fileTransform.isRenamable == false { continue }
+            do {
+                let newURL = try renameFile(at: fileTransform.url, to: fileTransform.prevName)
+                fileTransformData[idx].url = newURL
+            } catch {
+                errorMessage = "Error renaming files: \(error.localizedDescription)"
+            }
+        }
+        Self.clearTransformationLog()
+        isProcessing = false
+    }
+    
+    static func getTransformationLog() -> [FileTransformModel]? {
+        do {
+            let json = try getTransformationsLogFile()
+            let data = try Data(contentsOf: json)
+                if let decoded = try? JSONDecoder().decode([FileTransformModel].self, from: data) {
+                    return decoded
+                }
+            return nil
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    static func clearTransformationLog() {
+        try? FileManager.default.removeItem(at: getTransformationsLogFile())
+    }
+    
+    private func renameFile(at originalURL: URL, to newName: String) throws -> URL {
         let newURL = originalURL.deletingLastPathComponent()
             .appendingPathComponent(newName)
         
         try fileManager.moveItem(at: originalURL, to: newURL)
         print("Successfully Renamed \(originalURL.lastPathComponent) to \(newName)!")
+        return newURL
     }
 }
 
@@ -102,14 +145,15 @@ extension FileTransformViewModel {
     func saveToDisk() {
         do {
             let data = self.encodeToData()!
-            let applicationSupportDirectoryURL = try getOrCreateApplicationSupportDirectory()
+            let applicationSupportDirectoryURL = try Self.getOrCreateTransformationsLogFile()
             try data.write(to: applicationSupportDirectoryURL)
         } catch {
             print("Error saving data to disk: \(error)")
         }
     }
     
-    private func getOrCreateApplicationSupportDirectory() throws -> URL {
+    private static func getOrCreateTransformationsLogFile() throws -> URL {
+        let fileManager = FileManager()
         if let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
             let appDirectory = appSupportURL.appendingPathComponent("SampleWrangler")
             
@@ -119,6 +163,17 @@ extension FileTransformViewModel {
             } catch {
                 fatalError( "Couldn't create application support directory")
             }
+            
+            let jsonURL = appDirectory.appendingPathComponent("transformations.json")
+            return jsonURL
+        } else {
+            fatalError( "Couldn't find application support directory")
+        }
+    }
+    
+    private static func getTransformationsLogFile() throws -> URL {
+        if let appSupportURL = FileManager().urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            let appDirectory = appSupportURL.appendingPathComponent("SampleWrangler")
             
             let jsonURL = appDirectory.appendingPathComponent("transformations.json")
             return jsonURL

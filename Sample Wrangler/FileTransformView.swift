@@ -10,7 +10,7 @@ import SwiftUI
 
 // View that uses the ViewModel
 struct FileTransformView: View {
-    @StateObject private var viewModel: FileTransformViewModel
+    @ObservedObject private var viewModel: FileTransformViewModel
     @State private var showingConfirmation = false
     
     init(viewModel: FileTransformViewModel) {
@@ -34,6 +34,12 @@ struct FileTransformView: View {
             }
         } message: {
             Text("Are you sure?")
+        }
+        
+        
+        Button("Revert") {
+            viewModel.revertAllFileRenames()
+            
         }
     }
 }

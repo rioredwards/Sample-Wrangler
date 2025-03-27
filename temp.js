@@ -27,7 +27,7 @@ const sampleNames = fs.readFileSync(path.join(__dirname, "sampleNames.txt"), "ut
 const sampleNamesArray = sampleNames.split("\n");
 
 // make a new folder for samples
-// fs.mkdirSync(path.join(__dirname, "samples"));
+fs.mkdirSync(path.join(__dirname, "samples"));
 
 // create new samples with the same name in the samples folder
 sampleNamesArray.forEach((sample) => {

@@ -62,7 +62,6 @@ enum FileColors {
 
 struct FileListView: View {
     let fileTransformArr: [FileTransformModel]
-    @State private var selection: FileTransformModel.ID?
     
     init(_ fileTransformArr: [FileTransformModel]) {
         self.fileTransformArr = fileTransformArr
@@ -75,43 +74,11 @@ struct FileListView: View {
             ScrollView {
                 LazyVStack(spacing: 4) {
                     ForEach(sorted) { fileTransform in
-                        HStack {
-                            Text(fileTransform.prevName)
-                                .help(fileTransform.prevName)
-                                .frame( maxWidth: 400, alignment: .leading)
-                            Image(systemName: "arrow.right")
-                            Text(fileTransform.newName ?? "")
-                                .help(fileTransform.newName ?? "")
-                                .frame(alignment: .leading)
-                        }
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(
-                            (fileTransform.color).opacity(0.15)
-                        )
-                        .clipShape(Capsule())
+                        FileTransformListItem(id: fileTransform.id, prevName: fileTransform.prevName, newName: fileTransform.newName, color: fileTransform.color)
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
             }
         }
-    }
-}
-
-let mockArray: [FileTransformModel] = [
-    FileTransformModel.mock(id: 1),
-    FileTransformModel.mock(id: 2),
-    FileTransformModel.mock(id: 3)
-]
-
-struct FileListView_Previews: PreviewProvider {
-    static var previews: some View {
-        // Sample data for preview; adjust as needed for your FileObj model
-        return FileListView(mockArray)
-            .previewLayout(.sizeThatFits)
-            .padding()
     }
 }

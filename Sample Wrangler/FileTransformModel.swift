@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FileTransformModel: Codable, Identifiable {
     let id: String
-    let url: URL
+    var url: URL
     let newName: String?
     let prevName: String
     

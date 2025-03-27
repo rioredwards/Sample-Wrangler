@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class BPMExtractor {
+class BPMAndKeyExtractor {
     static func run() {
         print("Running BPMTest...")
     }
