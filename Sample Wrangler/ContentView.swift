@@ -21,31 +21,36 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            FolderPickerButton(baseFolder: $viewModel.baseFolder)
+            
             
             if let baseFolder = viewModel.baseFolder {
-                Text("Selected folder: \(baseFolder.lastPathComponent)")
-                    .padding(.top)
-                    .font(.headline)
-                
+                HStack(alignment: .center) {
+                    Text("Selected folder: ")
+                        .font(.system(size: 12))
+                        .foregroundColor(.white)
+                    Text(baseFolder.lastPathComponent)
+                        .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.mySecondary) // for example, blue to highlight it
+                    FolderPickerButton(baseFolder: $viewModel.baseFolder, buttonType: .changeFolder)
+                }
+                .padding(.top, 60)
+                .frame(maxWidth: .infinity, alignment: .center)
                 FileView(baseFolder)
-                    .padding()
+                
             } else {
                 Spacer()
-                Text("Please select a folder to begin")
-                    .font(.title2)
-                    .foregroundColor(.secondary)
+                FolderPickerButton(baseFolder: $viewModel.baseFolder, buttonType: .selectFolder)
                 Spacer()
             }
         }
         .padding(20)
-//        Add background image
+        //        Add background image
         .frame(width: 1200, height: 700, alignment: .center )
         .background(Image("bg")
-        .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 1200, height: 700)
-                .clipped()
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 1200, height: 700)
+            .clipped()
         )
     }
 }

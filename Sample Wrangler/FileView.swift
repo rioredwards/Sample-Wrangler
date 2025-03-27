@@ -38,6 +38,7 @@ struct FileView: View {
                 FileTransformView(viewModel: fileTransformViewModel, baseFolder: baseFolder)
             }
         }
+        .frame(maxHeight: 500)
         .onChange(of: baseFolder) { _, newFolder in
             // When baseFolder changes, update the viewModel's baseFolder and reload
             viewModel.baseFolder = newFolder

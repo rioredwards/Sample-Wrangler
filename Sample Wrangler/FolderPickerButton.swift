@@ -9,22 +9,27 @@
 import SwiftUI
 import AppKit
 
+enum MyButtonType {
+    case selectFolder, changeFolder
+}
+
 struct FolderPickerButton: View {
     @Binding var baseFolder: URL?
-    
+    var buttonType: MyButtonType = .selectFolder
+
     var body: some View {
         
         Button(action: selectFolder) {
             HStack {
-                Text("Select Folder")
-                .font(.system(size: 16, weight: .bold))
+                Text(buttonType == .changeFolder ? "Change Folder" : "Select Folder")
+                    .font(.system(size: buttonType == .changeFolder ? 14 : 16, weight: .bold))
                 // Large text
                 Image(systemName: "folder.fill.badge.plus")
-                .font(.system(size: 18, weight: .bold))
+                .font(.system(size: buttonType == .changeFolder ? 14 : 16, weight: .bold))
             }
             .frame(minWidth: 150)
         }
-        .buttonStyle(MyCoolButton())
+        .buttonStyle( MyCoolButton())
     }
     
     private func selectFolder() {
