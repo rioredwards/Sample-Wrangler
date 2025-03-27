@@ -27,12 +27,16 @@ class AudioPlayerService: ObservableObject {
     
     func play() {
         audioPlayer?.play()
-        isPlaying = true
+        DispatchQueue.main.async {
+            self.isPlaying = true
+        }
     }
     
     func pause() {
         audioPlayer?.pause()
-        isPlaying = false
+        DispatchQueue.main.async {
+            self.isPlaying = false
+        }
     }
     
     func togglePlayback() {

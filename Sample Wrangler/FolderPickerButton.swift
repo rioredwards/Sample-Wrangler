@@ -30,6 +30,7 @@ struct FolderPickerButton: View {
             .frame(minWidth: 150)
         }
         .buttonStyle( MyCoolButton())
+        .focusable(false)
     }
     
     private func selectFolder() {

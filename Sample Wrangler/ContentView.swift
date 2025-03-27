@@ -19,6 +19,7 @@ class AppViewModel: ObservableObject {
 
 struct ContentView: View {
     @StateObject private var viewModel = AppViewModel()
+    @State var isPlaying = false
     
     var body: some View {
         VStack {
@@ -87,8 +88,9 @@ Welcome to Sample Wrangler — the fastest way this side o' the Mississippi to g
         .overlay(alignment: .topTrailing) {
             Button(action: {
                 viewModel.audioPlayer.togglePlayback()
+                isPlaying.toggle()
             }) {
-                Image(systemName: viewModel.audioPlayer.isPlaying ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                Image(systemName: isPlaying ? "speaker.wave.3.fill" : "speaker.slash.fill")
                     .font(.system(size: 24))
                     .foregroundColor(.white)
                     .padding(12)
@@ -96,10 +98,12 @@ Welcome to Sample Wrangler — the fastest way this side o' the Mississippi to g
                     .clipShape(Circle())
             }
             .buttonStyle(.plain)
+            .focusable(false)
             .padding(20)
         }
         .onAppear {
             viewModel.audioPlayer.play()
+            isPlaying = true
         }
     }
 }
