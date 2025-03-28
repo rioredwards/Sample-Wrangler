@@ -28,46 +28,45 @@ struct FileTransformView: View {
         FileListView(viewModel.fileTransformData)
         
         HStack{
-            Button(action: { showingConfirmationForRename = true }) {
-                HStack {
-                    Text("Revert")
-                    .font(.system(size: 14))
-                    Image(systemName: "arrow.uturn.backward")
-                    .font(.system(size: 14))
+            if viewModel.transformationsFileExists {
+                Button(action: { showingConfirmationForRevert = true }) {
+                    HStack {
+                        Text("Revert")
+                            .font(.system(size: 14))
+                        Image(systemName: "arrow.uturn.backward")
+                            .font(.system(size: 14))
+                    }
+                    .frame(minWidth: 150)
                 }
-                .frame(minWidth: 150)
+                .confirmationDialog("Revert All Renamed Files?", isPresented: $showingConfirmationForRevert) {
+                    Button("Cancel", role: .cancel) { }
+                    Button("Confirm") {
+                        viewModel.revertAllFileRenames()
+                    }
+                } message: {
+                    Text("Are you sure?")
+                }.buttonStyle(MyDestructiveButton())
+            } else {
+                Button(action: { showingConfirmationForRename = true }) {
+                    HStack {
+                        Text("Rename All Files")
+                            .font(.system(size: 14))
+                        Image(systemName: "play.square.stack.fill")
+                            .font(.system(size: 14))
+                    }
+                    .frame(minWidth: 150)
+                }
+                .buttonStyle(MyOtherCoolButton())
+                .confirmationDialog("Rename All Files?", isPresented: $showingConfirmationForRename) {
+                    Button("Cancel", role: .cancel) { }
+                    Button("Confirm") {
+                        viewModel.renameAllFiles()
+                        viewModel.saveToDisk()
+                    }
+                } message: {
+                    Text("Are you sure?")
+                }
             }
-            .confirmationDialog("Revert All Renamed Files?", isPresented: $showingConfirmationForRevert) {
-                Button("Cancel", role: .cancel) { }
-                Button("Confirm") {
-                    viewModel.revertAllFileRenames()
-                }
-            } message: {
-                Text("Are you sure?")
-            }.buttonStyle(MyDestructiveButton())
-            
-            Button(action: { showingConfirmationForRename = true }) {
-                HStack {
-                    Text("Rename All Files")
-                    .font(.system(size: 14))
-                    Image(systemName: "play.square.stack.fill")
-                    .font(.system(size: 14))
-                }
-                .frame(minWidth: 150)
-            }
-            .buttonStyle(MyOtherCoolButton())
-            .confirmationDialog("Rename All Files?", isPresented: $showingConfirmationForRename) {
-                Button("Cancel", role: .cancel) { }
-                Button("Confirm") {
-                    viewModel.renameAllFiles()
-                    viewModel.saveToDisk()
-                }
-            } message: {
-                Text("Are you sure?")
-            }
-            
         }
-        
-        
     }
 }

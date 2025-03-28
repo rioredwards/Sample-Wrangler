@@ -90,18 +90,18 @@ struct FileListView: View {
 
 // Incorrect argument labels in call (have 'id:prevName:newName:url:isRenamable:isMusicFile:isBPMDetected:isKeyDetected:', expected 'id:url:newName:prevName:isRenamable:isMusicFile:isBPMDetected:isKeyDetected:')
 let mockFileTransformArr = [
-    FileTransformModel(id: "1", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true),
-    FileTransformModel(id: "2", url: URL(string: "test.wav")!, newName: "test.mp3", prevName: "test.wav", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true),
-    FileTransformModel(id: "3", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true),
+    FileTransformModel(id: "1", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true, isComplete: true),
+    FileTransformModel(id: "2", url: URL(string: "test.wav")!, newName: "test.mp3", prevName: "test.wav", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true, isComplete: true),
+    FileTransformModel(id: "3", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true, isComplete: true),
     // No BPM or Key
-    FileTransformModel(id: "4", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: false),
-    FileTransformModel(id: "5", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: false),
+    FileTransformModel(id: "4", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: false, isComplete: true),
+    FileTransformModel(id: "5", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: false, isComplete: true),
     // No BPM
-    FileTransformModel(id: "6", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: true),
-    FileTransformModel(id: "7", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: true),
+    FileTransformModel(id: "6", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: true, isComplete: true),
+    FileTransformModel(id: "7", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: false, isKeyDetected: true, isComplete: true),
     // No Key
-    FileTransformModel(id: "8", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: false),
-    FileTransformModel(id: "9", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: false),
+    FileTransformModel(id: "8", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: false, isComplete: true),
+    FileTransformModel(id: "9", url: URL(string: "test.mp3")!, newName: "test.wav", prevName: "test.mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: false, isComplete: true),
 ]
 
 // Preview

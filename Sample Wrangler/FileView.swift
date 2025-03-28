@@ -33,7 +33,7 @@ struct FileView: View {
             } else if viewModel.files.isEmpty {
                 Text("No files found")
             } else {
-                let fileTransformArray = FileTransformViewModel.generateFileTransformData(from: viewModel.files)
+                let fileTransformArray = FileTransformViewModel.generateFileTransformData(from: viewModel.files, baseURL: baseFolder)
                 let fileTransformViewModel = FileTransformViewModel(fileTransformData: fileTransformArray, baseURL: baseFolder)
                 FileTransformView(viewModel: fileTransformViewModel, baseFolder: baseFolder)
             }

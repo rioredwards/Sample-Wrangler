@@ -20,7 +20,7 @@ struct FileTransformListItem: Identifiable, View {
                 .font(.system(size: 12, weight: .semibold))
                 .help(prevName)
                 .frame( width: 500, alignment: .leading)
-            Image(systemName: "arrow.right")
+            Image(systemName: isComplete ? "arrow.left" : "arrow.right")
                 .font(.system(size: 12, weight: .semibold))
             Text(newName ?? "(No Change)")
                 .font(.system(size: 12, weight: .semibold))

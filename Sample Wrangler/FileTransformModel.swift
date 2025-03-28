@@ -10,7 +10,7 @@ import SwiftUI
 struct FileTransformModel: Codable, Identifiable {
     let id: String
     var url: URL
-    let newName: String?
+    var newName: String?
     let prevName: String
     
     let isRenamable: Bool
@@ -19,7 +19,7 @@ struct FileTransformModel: Codable, Identifiable {
     let isBPMDetected: Bool
     let isKeyDetected: Bool
     
-    init(id: String, url: URL, newName: String?, prevName: String, isRenamable: Bool, isMusicFile: Bool, isBPMDetected: Bool, isKeyDetected: Bool) {
+    init(id: String, url: URL, newName: String?, prevName: String, isRenamable: Bool, isMusicFile: Bool, isBPMDetected: Bool, isKeyDetected: Bool, isComplete: Bool) {
         self.id = id
         self.url = url
         self.newName = newName
@@ -29,9 +29,10 @@ struct FileTransformModel: Codable, Identifiable {
         self.isMusicFile = isMusicFile
         self.isBPMDetected = isBPMDetected
         self.isKeyDetected = isKeyDetected
+        self.isComplete = isComplete
     }
     
     static func mock(id: Int = 0) -> FileTransformModel {
-        return FileTransformModel(id: UUID().uuidString, url: URL(filePath: "file:///Users/fakeUser/fakeDirectory/file\(id).mp3"),newName: "file\(id).mp3", prevName: "file\(id).mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true)
+        return FileTransformModel(id: UUID().uuidString, url: URL(filePath: "file:///Users/fakeUser/fakeDirectory/file\(id).mp3"),newName: "file\(id).mp3", prevName: "file\(id).mp3", isRenamable: true, isMusicFile: true, isBPMDetected: true, isKeyDetected: true, isComplete: false)
     }
 }
